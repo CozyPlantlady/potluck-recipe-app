@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Potlucky - Your favorite recipe app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Potlucky lets multiple users to save and search recipes online. It's like a communal cookbook!
 
-## Available Scripts
+## Strategy
 
-In the project directory, you can run:
+User can use this app to record a recipe and show it to others. Users can comment on recipes with pictures to show their version of the recipe.
 
-### `npm start`
+## Scope
+### User Stories:
+- [All Tasks and User stories](https://github.com/CozyPlantlady/potluck-recipe-app/issues)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+If there is time, add *save* function so user can save recipes they like
 
-### `npm test`
+## Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Site structure
+![](doc/readme-images/site-structure.png "")
 
-### `npm run build`
+### Data Structure
+![](doc/readme-images/drawsql.png "")
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Skeleton
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![](doc/readme-images/potlucky-feed.png "")
+![](doc/readme-images/profile-page.png "")
+![](doc/readme-images/recipe-form.png "")
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Surface
 
-### `npm run eject`
+This app needs to be easy to navigate with crisp colors.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Testing
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### User Strory epics:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [As a User I can create an account so that I can see users-only content](https://github.com/CozyPlantlady/potluck-recipe-app/issues/1)
+- [As a User I can sign in so that I get to create, read, edit and delete posts](https://github.com/CozyPlantlady/potluck-recipe-app/issues/2)
+- [As a User I can sign out to safely end my session](https://github.com/CozyPlantlady/potluck-recipe-app/issues/3)
+- [As a User I can see my profile when logged in so that I get to see my status](https://github.com/CozyPlantlady/potluck-recipe-app/issues/4)
+- [As a User I can create a recipe post so that I can share it with others.](https://github.com/CozyPlantlady/potluck-recipe-app/issues/5)
+- [As a User I can see recipes posted by others so that I can look through them](https://github.com/CozyPlantlady/potluck-recipe-app/issues/6)
+- [As a User I can edit an recipe post so that I can update the information.](https://github.com/CozyPlantlady/potluck-recipe-app/issues/7)
+- [As a User I can read a post so that I know it was created.](https://github.com/CozyPlantlady/potluck-recipe-app/issues/8)
+- [As a User I can delete a post I made so that I don't have to keep unnecessary posts.](https://github.com/CozyPlantlady/potluck-recipe-app/issues/9)
+- [As a User I can comment recipes posted by others so that I can share my thoughts of the recipe.](https://github.com/CozyPlantlady/potluck-recipe-app/issues/10)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Automated testing:
 
-## Learn More
+### Testing with Code Validators:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Testing with Lighthouse
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Bugs and other issues:
 
-### Code Splitting
+**ERROR: Failed building wheel for backports.zoneinfo**:
+I got this error while deploying to Heroku (This is for the backend part of the project). Found a solution from [Stack Overflow](https://stackoverflow.com/questions/71712258/error-could-not-build-wheels-for-backports-zoneinfo-which-is-required-to-insta), and adjusted my requirements.txt-file accordingly.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**ERROR: Specifying a Node.js Version**:
+[Herokus official solution](https://devcenter.heroku.com/articles/nodejs-support#specifying-a-node-js-version)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## CREDITS
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
