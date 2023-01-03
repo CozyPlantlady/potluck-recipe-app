@@ -7,11 +7,10 @@
     padding-top: 175px;
   }
 
-a {
-  color: #fff;
-  transition: color ease-in-out 0.3s;
-}
-
 a:hover {
   text-decoration: none;
+}
+
+.a span {
+  color: #555;
 }
