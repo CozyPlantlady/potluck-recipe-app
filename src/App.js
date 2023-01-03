@@ -1,12 +1,15 @@
-import './App.module.css';
+import styles from './App.module.css';
 import NavBar from './components/NavBar';
+import Container from "react-bootstrap/Container"
 
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <NavBar></NavBar>
-      <h1>This is a recipe app</h1>
+      <Container className={styles.Main}>
+        <h1>This is a recipe app</h1>
+      </Container>
     </div>
   );
 }
