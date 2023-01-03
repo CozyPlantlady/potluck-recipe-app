@@ -31,6 +31,15 @@ If there is time, add *save* function so user can save recipes they like
 
 This app needs to be easy to navigate with crisp colors.
 
+### Fonts
+Prosto One
+
+![](doc/readme-images/font-prosto-one.png "")
+
+Caveat
+
+![](doc/readme-images/font-caveat.png "")
+
 ## Testing
 
 ### User Strory epics:
