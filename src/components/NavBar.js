@@ -2,24 +2,33 @@ import React from 'react'
 import { Container, Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 import logo from '../assets/logo.png'
 import styles from '../components/styles/NavBar.module.css'
+import styling from '../App.module.css'
 import { NavLink } from "react-router-dom"
 
 const NavBar = () => {
   return (
-    <Navbar bg="info" variant="dark" expand="lg" fixed="top" className={styles.navbartext}>
+    <Navbar className={styles.NavBar} bg="info" variant="dark" expand="lg" fixed="top">
         <Container>
-          <NavLink to="/">
+          <NavLink exact to="/">
             <Navbar.Brand 
-            className={styles.logo} 
+            className={styling.logo} 
             variant="white">
-              <img src={logo} alt="logo" height="60" />Potlucky
+              <img src={logo} alt="logo" height="100" />Potlucky
             </Navbar.Brand>
           </NavLink>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" >
                 <Nav className="ml-auto">
-                  <NavLink to="/">Home</NavLink>
-                  <NavLink to="/profile">Profile</NavLink>
+                  <NavLink 
+                  to="/"
+                  className={styles.NavLink}
+                  >Home
+                  </NavLink>
+                  <NavLink 
+                  to="/profile"
+                  className={styles.NavLink}>
+                  Profile
+                  </NavLink>
                   <Form>
                     <FormControl type="text" placeholder="find a recipe"/>
                     <Button variant="light">Search</Button>
