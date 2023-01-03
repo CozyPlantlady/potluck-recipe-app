@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '/workspace/potluck-recipe-app/src/assets/logo.png'
-import styles from '/workspace/potluck-recipe-app/src/components/styles/signUpForm.module.css'
+import logo from '../../assets/logo.png';
+import styles from '../../components/styles/signUpForm.module.css';
 
 import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
 
