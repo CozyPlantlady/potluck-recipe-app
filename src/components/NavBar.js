@@ -32,6 +32,11 @@ const NavBar = () => {
                   className={styles.NavLink}>
                   Profile
                   </NavLink>
+                  <NavLink 
+                  to="/signin"
+                  className={styles.NavLink}
+                  >Sign in
+                  </NavLink>
                 </Nav>
             </Navbar.Collapse>
           </Container>
