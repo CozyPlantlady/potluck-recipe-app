@@ -1,10 +1,15 @@
 .NavBar {
-    font-size: 5vh;
-    font-family: 'Caveat', cursive;
-    padding: 5px;
+
+}
+
+.logo {
+    font-size: 8vh;
+    font-family: 'Prosto One', cursive;
 }
 
 .NavLink {
     padding: 6px;
     text-decoration: none;
+    font-size: 5vh;
+    font-family: 'Caveat', cursive;
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import { Container, Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 import logo from '../assets/logo.png'
 import styles from '../components/styles/NavBar.module.css'
-import styling from '../App.module.css'
 import { NavLink } from "react-router-dom"
 
 const NavBar = () => {
@@ -11,7 +10,7 @@ const NavBar = () => {
         <Container>
           <NavLink exact to="/">
             <Navbar.Brand 
-            className={styling.logo} 
+            className={styles.logo} 
             variant="white">
               <img src={logo} alt="logo" height="100" />Potlucky
             </Navbar.Brand>
