@@ -17,6 +17,10 @@ const NavBar = () => {
           </NavLink>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" >
+                  <Form>
+                    <FormControl type="text" placeholder="find a recipe"/>
+                    <Button variant="light">Search</Button>
+                  </Form>
                 <Nav className="ml-auto">
                   <NavLink 
                   to="/"
@@ -28,10 +32,6 @@ const NavBar = () => {
                   className={styles.NavLink}>
                   Profile
                   </NavLink>
-                  <Form>
-                    <FormControl type="text" placeholder="find a recipe"/>
-                    <Button variant="light">Search</Button>
-                  </Form>
                 </Nav>
             </Navbar.Collapse>
           </Container>
