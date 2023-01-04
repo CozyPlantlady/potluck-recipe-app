@@ -11,7 +11,18 @@ const NavBar = () => {
   const loggedInIcons = <>{currentUser?.username}</>;
   const loggedOutIcons = (
     <>
-    <p> You are currently logged out</p></>
+    <p> You are currently logged out</p>
+    <NavLink 
+      to="/signup"
+      className={styles.NavLink}
+      >Sign up
+      </NavLink>
+      <NavLink 
+      to="/login"
+      className={styles.NavLink}
+      >Login
+    </NavLink>
+    </>
   );
 
   return (
@@ -42,16 +53,7 @@ const NavBar = () => {
                   className={styles.NavLink}>
                   Profile
                   </NavLink>
-                  <NavLink 
-                  to="/signup"
-                  className={styles.NavLink}
-                  >Sign up
-                  </NavLink>
-                  <NavLink 
-                  to="/login"
-                  className={styles.NavLink}
-                  >Login
-                  </NavLink>
+                  
                   {currentUser ? loggedInIcons : loggedOutIcons}
                 </Nav>
             </Navbar.Collapse>
