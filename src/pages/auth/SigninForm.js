@@ -33,7 +33,7 @@ const SignInForm = () => {
         const handleSubmit = async (event) => {
             event.preventDefault();
             try {
-                await axios.post('/dj-rest-auth/registration/', signInData)
+                await axios.post('/dj-rest-auth/login/', signInData)
                 history.push('/')
             } catch(err){
                 setErrors(err.response?.data)
