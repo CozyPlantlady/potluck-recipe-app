@@ -72,5 +72,23 @@ I got this error while deploying to Heroku (This is for the backend part of the 
 
 ## CREDITS
 
-Boiler plate code for Sign-up form from Code Institute Moments project.s
+Boiler plate code for Sign-up form from Code Institute Moments project.
+
+Fix from Tom_alumnus for the Cors origins problem after deployment to Heroku. This is in drf-api Settings.
+
+```
+ALLOWED_HOSTS = [
+    os.environ.get("ALLOWED_HOST"),
+    "localhost",
+]
+if "CLIENT_ORIGIN" in os.environ:
+    CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
+if "CLIENT_ORIGIN_DEV" in os.environ:
+    extracted_url = re.match(
+        r"^.+-", os.environ.get("CLIENT_ORIGIN_DEV", ""), re.IGNORECASE
+    ).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    ]
+```
 
