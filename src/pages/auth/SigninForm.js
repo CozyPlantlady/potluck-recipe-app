@@ -13,11 +13,10 @@ import axios from "axios";
 const SignInForm = () => {
         const [signInData, setSignInData] = useState({
             username: "",
-            password1: "",
-            password2: "",
+            password: "",
         });
     
-        const { username, password1, password2 } = signInData;
+        const { username, password } = signInData;
     
         const [errors, setErrors] = useState({});
     
@@ -33,8 +32,8 @@ const SignInForm = () => {
         const handleSubmit = async (event) => {
             event.preventDefault();
             try {
-                await axios.post('/dj-rest-auth/login/', signInData)
-                history.push('/')
+                await axios.post('/dj-rest-auth/login/', signInData);
+                history.push("/");
             } catch(err){
                 setErrors(err.response?.data)
             }
@@ -66,45 +65,26 @@ const SignInForm = () => {
                     <Alert variant="warning" key={idx}>{message}</Alert>
                 )}
 
-                <Form.Group controlId="password1">
+                <Form.Group controlId="password">
                     <Form.Label className="d-none">Password</Form.Label>
                     <Form.Control
                         type="password"
                         placeholder="Password"
-                        name="password1"
-                        value={password1}
+                        name="password"
+                        value={password}
                         onChange={handleChange}
                     />
                 </Form.Group>
-                {errors.password1?.map((message, idx) =>
-                    <Alert variant="warning" key={idx}>{message}</Alert>
-                )}
-
-                <Form.Group controlId="password2">
-                    <Form.Label className="d-none">Repeat password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Repeat password"
-                        name="password2"
-                        value={password2}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-                {errors.password2?.map((message, idx) =>
+                {errors.password?.map((message, idx) =>
                     <Alert variant="warning" key={idx}>{message}</Alert>
                 )}
 
                 <Button variant="primary" type="submit">
                     Sign in
                 </Button>
-                {errors.non_field_errors?.map((message, idx) =>
-                    <Alert variant="warning" key={idx}>{message}</Alert>
-                )}
 
             </Form>
             </Container>
-
-            
         </Col>
         <Col
             md={6}
