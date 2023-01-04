@@ -30,7 +30,7 @@ const SignUpForm = () => {
         event.preventDefault();
         try {
             await axios.post('/dj-rest-auth/registration/', signUpData)
-            history.push('/signin')
+            history.push('/login')
         } catch(err){
             setErrors(err.response?.data)
         }
@@ -40,8 +40,8 @@ const SignUpForm = () => {
       <Row>
         <Col className="my-auto py-2 p-md-2" md={6}>
             <Container className={`${styles.link} mt-3`}>
-                <Link to="/signin">
-                Already have an account? <span>Sign in</span>
+                <Link to="/login">
+                Already have an account? <span>Log in</span>
                 </Link>
             </Container>
           <Container className="p-4">

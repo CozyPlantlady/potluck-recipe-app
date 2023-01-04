@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
@@ -9,40 +9,46 @@ import Container from "react-bootstrap/Container";
 
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import { setCurrentUserContext } from "../../App";
 
-const SignInForm = () => {
-        const [signInData, setSignInData] = useState({
-            username: "",
-            password: "",
+function LogInForm() {
+
+    const setCurrentUser = useContext(setCurrentUserContext);
+
+    const [logInData, setLogInData] = useState({
+        username: "",
+        password: "",
+    });
+    
+    const { username, password } = logInData;
+    
+    const [errors, setErrors] = useState({});
+    
+    const history = useHistory();
+    
+    const handleChange = (event) => {
+        setLogInData({
+            ...logInData,
+            [event.target.name]: event.target.value
         });
+    };
     
-        const { username, password } = signInData;
-    
-        const [errors, setErrors] = useState({});
-    
-        const history = useHistory();
-    
-        const handleChange = (event) => {
-            setSignInData({
-                ...signInData,
-                [event.target.name]: event.target.value
-            });
-        };
-    
-        const handleSubmit = async (event) => {
-            event.preventDefault();
-            try {
-                await axios.post('/dj-rest-auth/login/', signInData);
-                history.push("/");
-            } catch(err){
-                setErrors(err.response?.data)
-            }
-        };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const {data} = await axios.post('/dj-rest-auth/login/', logInData);
+            setCurrentUser(data.user);
+            history.push("/");
+        } catch(err){
+            setErrors(err.response?.data);
+        }
+    };
+
     return (
         <Row>
         <Col className="my-auto py-2 p-md-2" md={6}>
             <Container>
-                <Link to="/">
+                <Link to="/signup">
                 Don't have an account? <span>Sign up!</span>
                 </Link>
             </Container>
@@ -82,6 +88,11 @@ const SignInForm = () => {
                 <Button variant="primary" type="submit">
                     Sign in
                 </Button>
+                {errors.non_field_errors?.map((message, idx) => 
+                    <Alert key={idx} variant="warning">
+                      {message}
+                    </Alert>
+                )}
 
             </Form>
             </Container>
@@ -95,4 +106,4 @@ const SignInForm = () => {
     );
     };
 
-    export default SignInForm;
+    export default LogInForm;

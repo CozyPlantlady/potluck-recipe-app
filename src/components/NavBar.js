@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Container, Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 import logo from '../assets/logo.png'
 import styles from '../components/styles/NavBar.module.css'
 import { NavLink } from "react-router-dom"
+import { CurrentUserContext } from '../App'
 
 const NavBar = () => {
+  const currentUser = useContext(CurrentUserContext);
+
+  const loggedInIcons = <>{currentUser?.username}</>;
+  const loggedOutIcons = (
+    <>
+    <p> You are currently logged out</p></>
+  );
+
   return (
     <Navbar className={styles.NavBar} bg="info" variant="dark" expand="lg" fixed="top">
         <Container>
@@ -27,16 +36,23 @@ const NavBar = () => {
                   className={styles.NavLink}
                   >Home
                   </NavLink>
+                  
                   <NavLink 
                   to="/profile"
                   className={styles.NavLink}>
                   Profile
                   </NavLink>
                   <NavLink 
-                  to="/signin"
+                  to="/signup"
                   className={styles.NavLink}
-                  >Sign in
+                  >Sign up
                   </NavLink>
+                  <NavLink 
+                  to="/login"
+                  className={styles.NavLink}
+                  >Login
+                  </NavLink>
+                  {currentUser ? loggedInIcons : loggedOutIcons}
                 </Nav>
             </Navbar.Collapse>
           </Container>
