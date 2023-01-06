@@ -15,7 +15,7 @@ function App() {
         <h1>This is a recipe app</h1>
         <Switch>
           <Route exact path="/" render={() => <h1>Home</h1>} />
-          <Route exact path="/profile" render={() => <h1>Profile</h1>} />
+          <Route exact path="/profiles" render={() => <h1>Profile</h1>} />
           <Route exact path="/login" render={() => <LogInForm /> } />
           <Route exact path="/signup" render={() => <SignUpForm /> } />
           <Route render={() => <p>Sorry, can't find that page</p>} />

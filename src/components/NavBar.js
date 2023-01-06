@@ -1,14 +1,14 @@
-import React from 'react'
-import { Container, Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
-import logo from '../assets/logo.png'
-import styles from '../components/styles/NavBar.module.css'
-import { NavLink } from "react-router-dom"
-import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext'
-import axios from 'axios'
+import React from 'react';
+import { Container, Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
+import logo from '../assets/logo.png';
+import styles from '../components/styles/NavBar.module.css';
+import { NavLink } from "react-router-dom";
+import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
+import axios from 'axios';
 
 const NavBar = () => {
-  const currentUser = useCurrentUser;
-  const setCurrentUser = useSetCurrentUser;
+  const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
 
   const handleLogOut = async () => {
     try {
@@ -22,7 +22,7 @@ const NavBar = () => {
   const addRecipe = (
     <NavLink 
     className={styles.NavLink}
-    to="/recipe/create"
+    to="/recipes/create"
     >Add recipe
   </NavLink>
   );
@@ -85,7 +85,7 @@ const NavBar = () => {
                   </NavLink>
                   
                   <NavLink 
-                  to="/profile"
+                  to="/profiles/"
                   className={styles.NavLink}>
                   Profile
                   </NavLink>
@@ -95,7 +95,7 @@ const NavBar = () => {
             </Navbar.Collapse>
           </Container>
     </Navbar>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
