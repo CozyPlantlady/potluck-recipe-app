@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Asset from "../../components/Asset";
 
 function RecipeCreateForm() {
 
@@ -34,12 +35,11 @@ function RecipeCreateForm() {
             <Col>
               <Container>
                 <Form.Group className="text-center">
-                  
                     <Form.Label
                       className="d-flex justify-content-center"
                       htmlFor="image-upload"
                     >
-                      ASSET
+                      <Asset message="Click to add a picture of the dish" />
                     </Form.Label>
     
                 </Form.Group>
