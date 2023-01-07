@@ -5,10 +5,13 @@ import styles from '../components/styles/NavBar.module.css';
 import { NavLink } from "react-router-dom";
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import axios from 'axios';
+import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const handleLogOut = async () => {
     try {
@@ -30,6 +33,12 @@ const NavBar = () => {
   const loggedInIcons = 
   <>
     <NavLink 
+    to="/profiles/"
+    className={styles.NavLink}>
+    Profile
+    </NavLink>
+                  
+    <NavLink 
       className={styles.NavLink}
       to="/"
       onClick={handleLogOut}>
@@ -40,13 +49,12 @@ const NavBar = () => {
       className={styles.NavLink}
       to={`/profiles/${currentUser?.profile_id}`}
       >
-      <img src={currentUser?.profile_image} alt="profile"/>
+      <img src={currentUser?.profile_image} style={{ width: 40, height: 40 }} alt="profile" />
     </NavLink>
   </>;
 
   const loggedOutIcons = (
     <>
-    <p> You are currently logged out</p>
     <NavLink 
       to="/signup"
       className={styles.NavLink}
@@ -61,39 +69,38 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar className={styles.NavBar} bg="info" variant="dark" expand="lg" fixed="top">
-        <Container>
-          <NavLink exact to="/">
-            <Navbar.Brand 
-            className={styles.logo} 
-            variant="white">
-              <img src={logo} alt="logo" height="100" />Potlucky
-            </Navbar.Brand>
-          </NavLink>
+    <Navbar expanded={expanded} className={styles.NavBar} bg="info" variant="dark" expand="lg" fixed="top">
+      <Container>
+        <NavLink exact to="/">
+          <Navbar.Brand 
+          className={styles.logo} 
+          variant="white">
+            <img src={logo} alt="logo" height="100" />Potlucky
+          </Navbar.Brand>
+        </NavLink>
+
+        <Navbar.Toggle
+          ref={ref}
+          onClick={() => setExpanded(!expanded)}
+          aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" >
+          <Form>
+            <FormControl type="text" placeholder="find a recipe"/>
+            <Button variant="light">Search</Button>
+          </Form>
+
           {currentUser && addRecipe}
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" >
-                  <Form>
-                    <FormControl type="text" placeholder="find a recipe"/>
-                    <Button variant="light">Search</Button>
-                  </Form>
-                <Nav className="ml-auto">
-                  <NavLink 
-                  to="/"
-                  className={styles.NavLink}
-                  >Home
-                  </NavLink>
-                  
-                  <NavLink 
-                  to="/profiles/"
-                  className={styles.NavLink}>
-                  Profile
-                  </NavLink>
-                  
-                  {currentUser ? loggedInIcons : loggedOutIcons}
-                </Nav>
-            </Navbar.Collapse>
-          </Container>
+
+          <Nav className="ml-auto">
+            <NavLink 
+            to="/"
+            className={styles.NavLink}>
+              Home
+            </NavLink>
+            {currentUser ? loggedInIcons : loggedOutIcons}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 };
