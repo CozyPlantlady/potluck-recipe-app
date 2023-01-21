@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -6,7 +6,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Asset from "../../components/Asset";
-import { Image } from "react-bootstrap";
+import { Alert, Image } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function RecipeCreateForm() {
 
@@ -20,22 +22,46 @@ function RecipeCreateForm() {
 
     const { title, recipe, image, method, keywords } = recipeData;
 
+    const imageInput = useRef(null);
+    const history = useHistory();
+
     const [errors, setErrors] = useState({});
 
     const handleChange = (event) => {
         setRecipeData({
             ...recipeData,
-            [event.target.name]:event.target.value,
+            [event.target.name]: event.target.value,
         });
     };
 
     const handleChangeImage = (event) => {
-        if (event.target.files.length){
+        if (event.target.files.length) {
             URL.revokeObjectURL(image);
             setRecipeData({
                 ...recipeData,
-                image: URL.createObjectURL(event.target.files[0])
+                image: URL.createObjectURL(event.target.files[0]),
             });
+        }
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const formData = new FormData();
+
+        formData.append('title', title);
+        formData.append('recipe', recipe);
+        formData.append('image', imageInput.current.files[0]);
+        formData.append('method', method);
+        formData.append('keywords', keywords);
+
+        try {
+            const { data } = await axiosReq.post('/recipes/', formData);
+            history.push(`/recipes/${data.id}`);
+        }catch(err){
+            console.log(err)
+            if (err.response?.status !== 401){
+                setErrors(err.response?.data);
+            }
         }
     };
   
@@ -50,16 +76,23 @@ function RecipeCreateForm() {
                 onChange={handleChange}
             />
         </Form.Group>
+        {errors.title?.map((message, idx) =>
+                    <Alert variant="warning" key={idx}>{message}</Alert>
+                )}
 
         <Form.Group>
             <Form.Label>Recipe</Form.Label>
             <Form.Control
-                type="textarea"
+                as="textarea"
+                rows={8}
                 name="recipe"
                 value={recipe}
                 onChange={handleChange}
             />
         </Form.Group>
+        {errors.recipe?.map((message, idx) =>
+                    <Alert variant="warning" key={idx}>{message}</Alert>
+                )}
 
         <Form.Group>
             <Form.Label>Method</Form.Label>
@@ -70,6 +103,9 @@ function RecipeCreateForm() {
                 onChange={handleChange}
             />
         </Form.Group>
+        {errors.method?.map((message, idx) =>
+                    <Alert variant="warning" key={idx}>{message}</Alert>
+                )}
 
         <Form.Group>
             <Form.Label>Keywords</Form.Label>
@@ -80,22 +116,24 @@ function RecipeCreateForm() {
                 onChange={handleChange}
             />
         </Form.Group>
-
+        {errors.keywords?.map((message, idx) =>
+                    <Alert variant="warning" key={idx}>{message}</Alert>
+                )}
         <Button
-          onClick={() => {}}
+          onClick={() => history.goBack()}
         >
           cancel
         </Button>
         <Button type="submit">
-          create
+          send
         </Button>
       </div>
     );
 
     return (
-        <Form>
+        <Form
+            onSubmit={handleSubmit}>
           <Row>
-            
             <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
               <Container>{textFields}</Container>
             </Col>
@@ -126,9 +164,13 @@ function RecipeCreateForm() {
                     <Form.File
                         id="image-upload"
                         accept="image/*"
-                        onChange={handleChangeImage}/>
+                        onChange={handleChangeImage}
+                        ref={imageInput}/>
     
                 </Form.Group>
+                {errors?.image?.map((message, idx) =>
+                    <Alert variant="warning" key={idx}>{message}</Alert>
+                )}
                 <div className="d-md-none">{textFields}</div>
               </Container>
             </Col>
