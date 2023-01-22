@@ -7,6 +7,7 @@ import SignUpForm from './pages/auth/SignupForm';
 import LogInForm from './pages/auth/LoginForm';
 import RecipeCreateForm from './pages/recipes/RecipeCreateForm';
 import RecipePage from './pages/recipes/RecipePage';
+import RecipesPage from './pages/recipes/RecipesPage';
 
 function App() {
 
@@ -16,7 +17,8 @@ function App() {
       <Container className={styles.Main}>
         <h1>This is a recipe app</h1>
         <Switch>
-          <Route exact path="/" render={() => <h1>Home</h1>} />
+          <Route exact path="/" render={() => <RecipesPage 
+            message="Sorry, didn't find anything. Try with different keyword."/>} />
           <Route exact path="/profiles" render={() => <h1>Profile</h1>} />
           <Route exact path="/login" render={() => <LogInForm /> } />
           <Route exact path="/signup" render={() => <SignUpForm /> } />
