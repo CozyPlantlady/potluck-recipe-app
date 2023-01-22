@@ -14,13 +14,13 @@ function RecipeCreateForm() {
 
     const [recipeData, setRecipeData] = useState({
         title: "",
-        recipe: "",
+        content: "",
         image: "",
         method: "",
         keywords: "",
       });
 
-    const { title, recipe, image, method, keywords } = recipeData;
+    const { title, content, image, method, keywords } = recipeData;
 
     const imageInput = useRef(null);
     const history = useHistory();
@@ -49,13 +49,16 @@ function RecipeCreateForm() {
         const formData = new FormData();
 
         formData.append('title', title);
-        formData.append('recipe', recipe);
+        formData.append('content', content);
         formData.append('image', imageInput.current.files[0]);
         formData.append('method', method);
         formData.append('keywords', keywords);
 
+        console.log(formData)
+        console.log(imageInput.current.files[0])
         try {
             const { data } = await axiosReq.post('/recipes/', formData);
+            console.log(data)
             history.push(`/recipes/${data.id}`);
         }catch(err){
             console.log(err)
@@ -85,12 +88,12 @@ function RecipeCreateForm() {
             <Form.Control
                 as="textarea"
                 rows={8}
-                name="recipe"
-                value={recipe}
+                name="content"
+                value={content}
                 onChange={handleChange}
             />
         </Form.Group>
-        {errors.recipe?.map((message, idx) =>
+        {errors.content?.map((message, idx) =>
                     <Alert variant="warning" key={idx}>{message}</Alert>
                 )}
 
