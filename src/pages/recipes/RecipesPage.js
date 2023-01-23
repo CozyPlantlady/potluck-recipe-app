@@ -9,6 +9,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
 import Asset from "../../components/Asset";
 import { Form } from "react-bootstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function RecipesPage({message, filter=""}) {
     const [recipes, setRecipes] = useState({ results: [] });
@@ -52,13 +53,21 @@ function RecipesPage({message, filter=""}) {
         {hasLoaded ? ( 
             <>
                 {recipes.results.length ? (
-                    recipes.results.map((recipe) => (
-                        <Recipe key={recipe.id} {...recipe} setRecipes={setRecipes} />
-                    ))
+                    <InfiniteScroll
+                        children={
+                            recipes.results.map((recipe) => (
+                                <Recipe key={recipe.id} {...recipe} setRecipes={setRecipes} />
+                            ))
+                        }
+                        dataLength={postMessage.results.length}
+                        loader={<Asset spinner />}
+                        hasMore={!!recipes.next}
+                        next={() => {}}
+                        />
                 ) : (
-                        <Container>
-                            <Asset message={message} />
-                        </Container>
+                    <Container>
+                        <Asset message={message} />
+                    </Container>
                 )}
             </>
         ) : (
