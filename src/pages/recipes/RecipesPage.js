@@ -10,6 +10,7 @@ import Recipe from "./Recipe";
 import Asset from "../../components/Asset";
 import { Form } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils.js/utils";
 
 function RecipesPage({message, filter=""}) {
     const [recipes, setRecipes] = useState({ results: [] });
@@ -62,7 +63,7 @@ function RecipesPage({message, filter=""}) {
                         dataLength={recipes.results.length}
                         loader={<Asset spinner />}
                         hasMore={!!recipes.next}
-                        next={() => {}}
+                        next={() => fetchMoreData(recipes, setRecipes)}
                         />
                 ) : (
                     <Container>
