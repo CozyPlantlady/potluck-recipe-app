@@ -84,10 +84,7 @@ const NavBar = () => {
           onClick={() => setExpanded(!expanded)}
           aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" >
-          <Form>
-            <FormControl type="text" placeholder="find a recipe"/>
-            <Button variant="light">Search</Button>
-          </Form>
+          
 
           {currentUser && addRecipe}
 
