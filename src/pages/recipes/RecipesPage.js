@@ -29,7 +29,13 @@ function RecipesPage({message, filter=""}) {
             }
         };
         setHasLoaded(false);
-        fetchRecipes();
+        const timer = setTimeout(() => {
+            fetchRecipes();
+        }, 1000)
+        return () => {
+            clearTimeout(timer)
+        }
+
     }, [filter, query, pathname]);
   
   return (
