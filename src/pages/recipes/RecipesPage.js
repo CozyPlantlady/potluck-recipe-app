@@ -42,7 +42,7 @@ function RecipesPage({message, filter=""}) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <Form onsSubmit={(event) => event.preventDefault()}>
+        <Form onSubmit={(event) => event.preventDefault()}>
             <Form.Control 
                 type="text"
                 placeholder="find a recipe"
@@ -59,7 +59,7 @@ function RecipesPage({message, filter=""}) {
                                 <Recipe key={recipe.id} {...recipe} setRecipes={setRecipes} />
                             ))
                         }
-                        dataLength={postMessage.results.length}
+                        dataLength={recipes.results.length}
                         loader={<Asset spinner />}
                         hasMore={!!recipes.next}
                         next={() => {}}
