@@ -8,16 +8,19 @@ import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
 import Asset from "../../components/Asset";
+import { Form } from "react-bootstrap";
 
 function RecipesPage({message, filter=""}) {
     const [recipes, setRecipes] = useState({ results: [] });
     const { pathname } = useLocation();
     const [hasLoaded, setHasLoaded] = useState(false);
 
+    const [query, setQuery] = useState("");
+
     useEffect(() => {
         const fetchRecipes = async () => {
             try {
-                const { data } = await axiosReq.get(`/recipes/?${filter}`)
+                const { data } = await axiosReq.get(`/recipes/?${filter}search=${query}`);
                 setRecipes(data);
                 setHasLoaded(true);
             } catch(err){
@@ -27,11 +30,19 @@ function RecipesPage({message, filter=""}) {
         };
         setHasLoaded(false);
         fetchRecipes();
-    }, [filter, pathname]);
+    }, [filter, query, pathname]);
   
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <Form onsSubmit={(event) => event.preventDefault()}>
+            <Form.Control 
+                type="text"
+                placeholder="find a recipe"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                />
+        </Form>
         {hasLoaded ? ( 
             <>
                 {recipes.results.length ? (
