@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Nav, Navbar} from 'react-bootstrap';
 import logo from '../assets/logo.png';
-import styles from '../components/styles/NavBar.module.css';
+import styles from '../styles/NavBar.module.css';
 import { NavLink } from "react-router-dom";
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import axios from 'axios';
