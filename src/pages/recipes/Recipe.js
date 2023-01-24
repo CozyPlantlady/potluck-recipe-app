@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Media } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { DropdownEditDelete } from '../../components/DropdownEditDelete';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 const Recipe = (props) => {
@@ -30,7 +31,7 @@ const Recipe = (props) => {
                 </Link>
                 <div className="d-flex align-items-center">
                     <span>{edited_at}</span>
-                    {is_owner && recipePage && "..."}
+                    {is_owner && recipePage && <DropdownEditDelete /> }
                 </div>
             </Media>
         </Card.Body>
