@@ -15,18 +15,24 @@ const CustomToggle = React.forwardRef(({ onClick }, ref) => (
     />
   ));
 
-  export const DropdownEditDelete = () => {
+  export const DropdownEditDelete = ({handleEdit, handleDelete}) => {
     return (
         <Dropdown className="ml-auto" drop="left">
         <Dropdown.Toggle as={CustomToggle} />
     
-        <Dropdown.Menu className="text-center">
-          <Dropdown.Item eventKey="1">Red</Dropdown.Item>
-          <Dropdown.Item eventKey="2">Blue</Dropdown.Item>
-          <Dropdown.Item eventKey="3" active>
-            Orange
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="1">Red-Orange</Dropdown.Item>
+        <Dropdown.Menu className="text-center"
+         popperConfig={{ strategy: "fixed" }}>
+          <Dropdown.Item 
+            onClick={handleEdit}
+            aria-label="edit">
+                <i className="fas fa-edit" /> Edit
+            </Dropdown.Item>
+
+          <Dropdown.Item 
+            onClick={handleDelete}
+            aria-label="delete">
+                <i className="fas fa-trash"> Delete</i>
+            </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     );

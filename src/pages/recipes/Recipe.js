@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Media } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { axiosRes } from '../../api/axiosDefaults';
 import { DropdownEditDelete } from '../../components/DropdownEditDelete';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
@@ -21,6 +22,20 @@ const Recipe = (props) => {
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner
+    const history = useHistory();
+
+    const handleEdit = () => {
+        history.push(`/recipes/${id}/edit`)
+    }
+
+    const handleDelete = async() => {
+        try {
+            await axiosRes.delete(`/recipes/${id}/`);
+            history.goBack();
+        }catch (err) {
+            console.log(err);
+        }
+    };
 
   return (
     <Card>
@@ -31,7 +46,8 @@ const Recipe = (props) => {
                 </Link>
                 <div className="d-flex align-items-center">
                     <span>{edited_at}</span>
-                    {is_owner && recipePage && <DropdownEditDelete /> }
+                    {is_owner && recipePage && 
+                    <DropdownEditDelete handleEdit={handleEdit} handleDelete={handleDelete} /> }
                 </div>
             </Media>
         </Card.Body>
