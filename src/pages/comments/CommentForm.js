@@ -7,7 +7,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { axiosRes } from "../../api/axiosDefaults";
 
 function CommentForm(props) {
-  const { recipe, setRecipe, setComments, profileImage, profile_id } = props;
+  const { recipe, setRecipe, setComments, profile_id } = props;
   const [content, setContent] = useState("");
 
   const handleChange = (event) => {
@@ -42,10 +42,9 @@ function CommentForm(props) {
       <Form.Group>
         <InputGroup>
           <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profileImage} />
+
           </Link>
           <Form.Control
-            className={styles.Form}
             placeholder="my comment..."
             as="textarea"
             value={content}
@@ -59,7 +58,7 @@ function CommentForm(props) {
         disabled={!content.trim()}
         type="submit"
       >
-        recipe
+        Send comment
       </button>
     </Form>
   );
