@@ -1,15 +1,37 @@
 import React from 'react'
 import { Media } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { axiosRes } from '../../api/axiosDefaults';
 import { DropdownEditDelete } from '../../components/DropdownEditDelete';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import styles from "../../styles/Comment.module.css"
 
 const Comment = (props) => {
-    const { profile_id, owner, edited_at, content, comment_image } = props;
+    const {
+        profile_id,
+        owner,
+        edited_at,
+        content,
+        comment_image,
+        id,
+        setComments
+    } = props;
 
     const currentUser = useCurrentUser()
     const is_owner = currentUser?.username === owner;
+
+    const handleDelete = async () => {
+        try {
+            await axiosRes.delete(`/comments/${id}/`)
+
+            setComments(prevComments => ({
+                prevComments,
+                results: prevComments.results.filter(comment => comment.id !== id),
+            }));
+        } catch(err){
+
+        }
+    }
 
   return (
     <div>
@@ -30,7 +52,7 @@ const Comment = (props) => {
             src={comment_image}
             />
             {is_owner && (
-                <DropdownEditDelete handleEdit={() => {}} handleDelete={() => {}} />
+                <DropdownEditDelete handleEdit={() => {}} handleDelete={handleDelete} />
             )}
         </Media>
     </div>
