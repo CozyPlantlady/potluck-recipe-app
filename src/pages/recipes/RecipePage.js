@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
-import CommentForm from "../comments/CommentForm";
+import BetterCommentForm from "../comments/BetterCommentForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
@@ -20,11 +20,12 @@ function RecipePage() {
     useEffect(() => {
         const handleMount = async () => {
             try {
-                const [{data: recipe}] = await Promise.all([
+                const [{data: recipe}, {data: comments}] = await Promise.all([
                     axiosReq.get(`/recipes/${id}`),
+                    axiosReq.get(`/comments/?recipe=${id}`)
                 ]);
                 setRecipe({results: [recipe]});
-                console.log(recipe)
+                setComments(comments);
             } catch(err){
                 console.log(err);
             }
@@ -38,15 +39,26 @@ function RecipePage() {
         <Recipe {...recipe.results[0]} setRecipes={setRecipe} recipePage/>
         <Container>
           {currentUser ? (
-          <CommentForm
+          <BetterCommentForm
             profile_id={currentUser.profile_id}
-            post={id}
+            recipe={id}
             setRecipe={setRecipe}
             setComments={setComments}
           />
           ) : comments.results.length ? (
-            "Comments"
+            comments.results.map(comment => (
+              <p key={comment.id}>
+                {comment.owner}: {comment.content}
+              </p>
+            ))
           ) : null}
+          {comments.results.length ? (
+            "comments will go here"
+          ) : currentUser ? (
+            <span>Current user, you should comment</span>
+          ) : (
+            <span>Log in to start commenting</span>
+          )}
         </Container>
       </Col>
     </Row>

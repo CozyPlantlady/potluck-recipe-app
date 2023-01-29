@@ -17,7 +17,7 @@ function CommentForm(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axiosRes.recipe("/comments/", {
+      const { data } = await axiosRes.post("/comments/", {
         content,
         recipe,
       });
@@ -47,7 +47,6 @@ function CommentForm(props) {
           <Form.Control
             placeholder="my comment..."
             as="textarea"
-            value={content}
             onChange={handleChange}
             rows={2}
           />
