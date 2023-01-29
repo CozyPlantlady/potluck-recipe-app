@@ -16,7 +16,7 @@ function BetterCommentForm(props) {
     const [commentData, setCommentData] = useState({
         content: "",
         comment_image: "",
-        original_recipe:[`/recipes/${id}`],
+        original_recipe: parseInt(`${id}`),
       });
 
     const {content, comment_image, original_recipe } = commentData;
@@ -24,6 +24,7 @@ function BetterCommentForm(props) {
     const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
+    console.log(commentData)
     setCommentData({
         ...commentData,
         [event.target.id]: event.target.value,
@@ -47,7 +48,7 @@ function BetterCommentForm(props) {
 
         formData.append('content', content);
         formData.append('original_recipe', original_recipe);
-        formData.append('comment_image', imageInput.current.files[0]);
+        formData.append('comment_image', comment_image);
         console.log(formData)
         console.log(imageInput.current.files[0])
 
@@ -74,6 +75,7 @@ function BetterCommentForm(props) {
             as="textarea"
             onChange={handleChange}
             rows={2}
+            id='content'
           />
         </InputGroup>
       </Form.Group>
