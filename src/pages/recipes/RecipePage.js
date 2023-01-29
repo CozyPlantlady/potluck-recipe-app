@@ -8,6 +8,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
 import BetterCommentForm from "../comments/BetterCommentForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Comment from "../comments/Comment";
 
 
 function RecipePage() {
@@ -46,14 +47,12 @@ function RecipePage() {
             setComments={setComments}
           />
           ) : comments.results.length ? (
-            comments.results.map(comment => (
-              <p key={comment.id}>
-                {comment.owner}: {comment.content}
-              </p>
-            ))
+            "Comments"
           ) : null}
           {comments.results.length ? (
-            "comments will go here"
+            comments.results.map(comment => (
+              <Comment key={comments.id} {...comment} />
+            ))
           ) : currentUser ? (
             <span>Current user, you should comment</span>
           ) : (

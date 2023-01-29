@@ -44,13 +44,14 @@ function BetterCommentForm(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-        const formData = new FormData();
+    const formData = new FormData();
 
-        formData.append('content', content);
-        formData.append('original_recipe', original_recipe);
-        formData.append('comment_image', comment_image);
-        console.log(formData)
-        console.log(imageInput.current.files[0])
+    formData.append('content', content);
+    formData.append('original_recipe', original_recipe);
+    formData.append('comment_image', comment_image);
+    
+    console.log(formData);
+    console.log(imageInput.current.files[0]);
 
     try {
       const { data } = await axiosRes.post("/comments/", formData);
