@@ -9,6 +9,7 @@ import RecipeCreateForm from './pages/recipes/RecipeCreateForm';
 import RecipePage from './pages/recipes/RecipePage';
 import RecipesPage from './pages/recipes/RecipesPage';
 import RecipeEditForm from './pages/recipes/RecipeEditForm';
+import ProfilePage from './pages/profiles/ProfilePage';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/recipes/create" render={() => <RecipeCreateForm /> } />
           <Route exact path="/recipes/:id" render={()=> <RecipePage />} />
           <Route exact path="/recipes/:id/edit" render={() => <RecipeEditForm /> } />
+          <Route exact path="/profiles/:id" render={()=> <ProfilePage /> } />
           <Route render={() => <p>Sorry, can't find that page</p>} />
         </Switch>
       </Container>

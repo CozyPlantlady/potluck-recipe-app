@@ -41,7 +41,7 @@ const Recipe = (props) => {
     <Card>
         <Card.Body>
             <Media className="align-items-center justify-content-between">
-                <Link to={`/profile/${profile_id}`}>
+                <Link to={`/profiles/${profile_id}`}>
                     {owner} { profile_image } 
                 </Link>
                 <div className="d-flex align-items-center">
