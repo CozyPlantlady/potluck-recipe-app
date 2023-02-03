@@ -17,7 +17,8 @@ function App() {
     <div className={styles.App}>
       <NavBar></NavBar>
       <Container className={styles.Main}>
-        <h1>This is a recipe app</h1>
+        <h1>Welcome potlucker!</h1>
+        <p>Start by writing an ingredient or other keyword to the searchbar</p>
         <Switch>
           <Route exact path="/" render={() => <RecipesPage 
             message="Sorry, didn't find anything. Try with different keyword."/>} />
