@@ -55,7 +55,6 @@ Caveat
 - [As a User I can delete a post I made so that I don't have to keep unnecessary posts.](https://github.com/CozyPlantlady/potluck-recipe-app/issues/9)
 - [As a User I can comment recipes posted by others so that I can share my thoughts of the recipe.](https://github.com/CozyPlantlady/potluck-recipe-app/issues/10)
 
-### Automated testing:
 
 ### Testing with Code Validators:
 
