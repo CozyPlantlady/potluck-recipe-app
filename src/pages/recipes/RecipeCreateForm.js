@@ -71,7 +71,7 @@ function RecipeCreateForm() {
     const textFields = (
       <div className="text-center">
         <Form.Group>
-            <Form.Label>Title</Form.Label>
+            <Form.Label>Title:</Form.Label>
             <Form.Control
                 type="text"
                 name="title"
@@ -84,7 +84,7 @@ function RecipeCreateForm() {
                 )}
 
         <Form.Group>
-            <Form.Label>Recipe</Form.Label>
+            <Form.Label>Recipe:</Form.Label>
             <Form.Control
                 as="textarea"
                 rows={8}
@@ -98,7 +98,7 @@ function RecipeCreateForm() {
                 )}
 
         <Form.Group>
-            <Form.Label>Method</Form.Label>
+            <Form.Label>Cooking method:</Form.Label>
             <Form.Control
                 type="text"
                 name="method"
@@ -111,7 +111,7 @@ function RecipeCreateForm() {
                 )}
 
         <Form.Group>
-            <Form.Label>Keywords</Form.Label>
+            <Form.Label>Keywords:</Form.Label>
             <Form.Control
                 type="textarea"
                 name="keywords"

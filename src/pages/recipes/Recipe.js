@@ -57,6 +57,7 @@ const Recipe = (props) => {
         <Card.Body>
             {title && <Card.Title className='text-center'>{title}</Card.Title>}
             {content && <Card.Text>{content}</Card.Text>}
+            <p>Keywords:</p>
             {method && <Card.Text>{method}</Card.Text>}
             {keywords && <Card.Text>{keywords}</Card.Text>}
         </Card.Body>
