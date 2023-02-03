@@ -33,7 +33,7 @@ const NavBar = () => {
   const loggedInIcons = 
   <>
     <NavLink 
-    to="/profiles/"
+    to={`/profiles/${currentUser?.profile_id}`}
     className={styles.NavLink}>
     Profile
     </NavLink>
@@ -45,12 +45,6 @@ const NavBar = () => {
         Log out
     </NavLink>
 
-    <NavLink 
-      className={styles.NavLink}
-      to={`/profiles/${currentUser?.profile_id}`}
-      >
-      <img src={currentUser?.profile_image} style={{ width: 40, height: 40 }} alt="profile" />
-    </NavLink>
   </>;
 
   const loggedOutIcons = (
