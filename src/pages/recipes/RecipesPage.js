@@ -43,6 +43,7 @@ function RecipesPage({message, filter=""}) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <p>Start by writing a key word or ingredient</p>
         <Form onSubmit={(event) => event.preventDefault()}>
             <Form.Control 
                 type="text"
