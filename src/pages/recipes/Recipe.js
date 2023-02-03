@@ -42,7 +42,7 @@ const Recipe = (props) => {
         <Card.Body>
             <Media className="align-items-center justify-content-between">
                 <Link to={`/profiles/${profile_id}`}>
-                    {owner} { profile_image } 
+                    {owner}
                 </Link>
                 <div className="d-flex align-items-center">
                     <span>{edited_at}</span>
@@ -59,7 +59,6 @@ const Recipe = (props) => {
             {content && <Card.Text>{content}</Card.Text>}
             {method && <Card.Text>{method}</Card.Text>}
             {keywords && <Card.Text>{keywords}</Card.Text>}
-            { profile_image } 
         </Card.Body>
         
     </Card>
