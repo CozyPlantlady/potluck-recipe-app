@@ -56,11 +56,15 @@ Caveat
 - [As a User I can comment recipes posted by others so that I can share my thoughts of the recipe.](https://github.com/CozyPlantlady/potluck-recipe-app/issues/10)
 
 
-### Testing with Code Validators:
-
 #### Testing with Lighthouse
 
+
+![](doc/readme-images/lighthouse.png "")
+
 ### Bugs and other issues:
+
+[All logged bugs](https://github.com/CozyPlantlady/potluck-recipe-app/issues?q=is%3Aopen+is%3Aissue+label%3ABug)
+
 
 **ERROR: Failed building wheel for backports.zoneinfo**:
 I got this error while deploying to Heroku (This is for the backend part of the project). Found a solution from [Stack Overflow](https://stackoverflow.com/questions/71712258/error-could-not-build-wheels-for-backports-zoneinfo-which-is-required-to-insta), and adjusted my requirements.txt-file accordingly.
