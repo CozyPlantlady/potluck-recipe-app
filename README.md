@@ -75,7 +75,7 @@ I got this error while deploying to Heroku (This is for the backend part of the 
 
 ## CREDITS
 
-Boiler plate code for Sign-up form from Code Institute Moments project.
+Boiler plate codes Code Institute Moments project. This project takes heavily after that project.
 
 Fix from Tom_alumnus for the Cors origins problem after deployment to Heroku. This is in drf-api Settings.
 
